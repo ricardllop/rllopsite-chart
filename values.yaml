@@ -3,17 +3,14 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   repository: rllopdev/rllopsite
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "actionslatest"
-
+  tag: "ga-2024.12.28-1721"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "rllopapp"
-
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -24,25 +21,22 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: "rllopapp-sa"
-
 podAnnotations: {}
 podLabels: {}
-
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 80
-
 ingress:
   enabled: true
   className: ""
@@ -68,7 +62,6 @@ ingress:
       hosts:
         - ricardllop.com
         - www.ricardllop.com
-
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -80,7 +73,6 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 livenessProbe:
   httpGet:
     path: /
@@ -89,14 +81,12 @@ readinessProbe:
   httpGet:
     path: /
     port: http
-
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
@@ -111,7 +101,5 @@ volumeMounts: []
 #   readOnly: true
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
